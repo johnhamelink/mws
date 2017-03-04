@@ -7,7 +7,20 @@ defmodule Mws.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     preferred_cli_env: [
+       vcr: :test, "vcr.delete": :test, "vcr.check": :test, "vcr.show": :test
+     ],
+     deps: deps(),
+     package: package(),
+     name: "MWS",
+     description: "A fully-featured and responsible Amazon MWS client for Elixir",
+     source_url: "https://github.com/johnhamelink/mws",
+     homepage_url: "https://hexdocs.com/mws",
+     docs: [
+       main: "MWS",
+       extras: ["README.md"]
+     ]
+    ]
   end
 
   # Configuration for the OTP application
@@ -17,6 +30,19 @@ defmodule Mws.Mixfile do
     # Specify extra applications you'll use from Erlang/Elixir
     [extra_applications: [:logger],
      mod: {Mws.Application, []}]
+  end
+
+  defp package do
+    [
+      name: :mws,
+      files: ["lib", "config", "mix.exs", "README.md", "LICENSE"],
+      maintainers: ["John Hamelink"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/johnhamelink/mws",
+        "Docs"   => "https://hexdocs.pm/mws"
+      }
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -29,6 +55,15 @@ defmodule Mws.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:httpoison, "~> 0.11"},
+      {:poison, "~> 2.0"},
+      {:exvcr, "~> 0.8", only: [:dev, :test]},
+      {:credo, "~> 0.3", only: [:dev, :test]},
+      {:dialyxir, "~> 0.4", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.14", only: :dev},
+      {:eliver, "~> 1.3.0", only: :dev},
+      {:timex, "~> 3.1"}
+    ]
   end
 end

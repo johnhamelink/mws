@@ -1,6 +1,15 @@
-# Mws
+# MWS
 
-**TODO: Add description**
+MWS aims to be a fully-featured and *responsible* Amazon MWS client for Elixir.
+
+## Useful tidbits:
+
+ - [MWS Documentation](https://developer.amazonservices.co.uk/gp/mws/docs.html)
+ - [MWS Scratchpad](https://mws.amazonservices.com/scratchpad/index.html)
+ 
+## TODOS:
+
+You can see the [TODO list here](TODOS.md).
 
 ## Installation
 
