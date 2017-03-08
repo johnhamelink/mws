@@ -13,11 +13,10 @@ defmodule Mws.Parsers.TransformXml do
   end
 
   defp produce_unique_filename() do
-    Regex.replace(
-      ~r/[\s\.\:]/,
-      DateTime.to_iso8601(DateTime.utc_now()),
-      ""
-    ) <> ".xml"
+    [
+      Regex.replace(~r/[\s\.\:]/, DateTime.to_iso8601(DateTime.utc_now()), ""),
+      ".xml"
+    ] |> Enum.join("")
   end
 
 end
