@@ -27,4 +27,5 @@
   "sweet_xml": {:hex, :sweet_xml, "0.6.5", "dd9cde443212b505d1b5f9758feb2000e66a14d3c449f04c572f3048c66e6697", [:mix], []},
   "timex": {:hex, :timex, "3.1.13", "48b33162e3ec33e9a08fb5f98e3f3c19c3e328dded3156096c1969b77d33eef0", [:mix], [{:combine, "~> 0.7", [hex: :combine, optional: false]}, {:gettext, "~> 0.10", [hex: :gettext, optional: false]}, {:tzdata, "~> 0.1.8 or ~> 0.5", [hex: :tzdata, optional: false]}]},
   "tzdata": {:hex, :tzdata, "0.5.11", "3d5469a9f46bdf4a8760333dbdabdcc4751325035c454b10521f71e7c611ae50", [:mix], [{:hackney, "~> 1.0", [hex: :hackney, optional: false]}]},
+  "xml_builder": {:hex, :xml_builder, "0.0.9", "68f336e8c5ba32c130d13e96a379cd77e0dbb1c5152c35a30be96c1d1566b05e", [:mix], []},
   "xslt": {:hex, :xslt, "0.1.0", "2f86b22058969fccb9f4b8c2d1c8dc024e3ed66c8c2b86840f3bf2fec2a33691", [:mix], [{:porcelain, "~> 2.0", [hex: :porcelain, optional: false]}]}}

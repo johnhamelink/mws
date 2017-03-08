@@ -46,6 +46,7 @@ defmodule Mws.Mixfile do
     [
       {:httpoison, "~> 0.11"},
       {:sweet_xml, "~> 0.6"},
+      {:xml_builder, "~> 0.0.9"},
       {:csv, "~> 1.4"},
       {:timex, "~> 3.1"},
       {:xslt, "~> 0.1"},
