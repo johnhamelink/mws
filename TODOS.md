@@ -1,8 +1,14 @@
-## TODO:
+# TODO List
+
+## Functionality
+
+Add throttling layer which adds overspilt requests to a queue.
+
+## Endpoints:
 
  - [ ] Feeds
-   - [ ] SubmitFeed
-   - [ ] GetFeedSubmissionList
+   - [x] SubmitFeed
+   - [x] GetFeedSubmissionList
    - [ ] GetFeedSubmissionListByNextToken
    - [ ] GetFeedSubmissionCount
    - [ ] CancelFeedSubmissions
