@@ -49,7 +49,7 @@ defmodule Mws.FeedTest do
   test "GetFeedSubmissionList", ctx do
     use_cassette "get_feed_submission_list" do
 
-      Mws.Feed.list(
+      list = Mws.Feed.list(
         ctx[:conn],
         %{
           statuses: [:done],
@@ -57,8 +57,26 @@ defmodule Mws.FeedTest do
           feed_types: [:products, :product_pricing]
         }
       )
-      |> IO.inspect
 
+      result = list[:results] |> List.first
+      assert result[:feed_processing_status] == :in_progress
+    end
+  end
+
+  test "GetFeedSubmissionResult", ctx do
+    use_cassette "get_feed_submission_list" do
+
+      list = Mws.Feed.list(
+        ctx[:conn],
+        %{
+          statuses: [:done],
+          submission_ids: ["50004017233"],
+          feed_types: [:products, :product_pricing]
+        }
+      )
+
+      result = list[:results] |> List.first
+      assert result[:feed_processing_status] == :in_progress
     end
   end
 end
