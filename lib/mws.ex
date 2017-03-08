@@ -1,18 +1,5 @@
 defmodule Mws do
   @moduledoc """
-  Documentation for Mws.
+  MWS aims to be a fully-featured and *responsible* Amazon MWS client for Elixir.
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Mws.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
