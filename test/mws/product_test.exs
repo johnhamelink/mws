@@ -41,7 +41,7 @@ defmodule Mws.ProductTest do
   end
 
   test "GetMatchingProduct [M]", ctx do
-    use_cassette "get_matching_product" do
+    use_cassette "get_matching_products_multiple" do
 
 
       query =
@@ -57,6 +57,7 @@ defmodule Mws.ProductTest do
         query: query
       }
 
+    # TODO: modify the parser so that it handles multiple products correctly.
     resp = Mws.Client.request(ctx[:config], {:post, url}, Mws.Parsers.Product)
     assert resp[:status] == "Success"
     assert resp[:products] |> Enum.count == 2
