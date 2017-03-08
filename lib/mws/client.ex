@@ -11,23 +11,26 @@ defmodule Mws.Client do
     GenServer.start_link(__MODULE__, [config: config])
   end
 
-  def request(pid, verb, uri = %URI{}, parser) do
-    GenServer.call(pid, {:request, verb, uri, parser})
-  end
+  def request(pid, verb, uri = %URI{}, parser),
+  do: request(pid, verb, uri, "", parser)
 
-  def handle_call({:request, verb, uri, parser}, from, state) do
+  def request(pid, verb, uri = %URI{}, body, parser),
+  do: GenServer.call(pid, {:request, verb, uri, body, parser})
+
+  def handle_call({:request, verb, uri, body, parser}, _from, state) do
     config = state[:config]
     endpoint = config.endpoint
+
     # 1. Add endpoint info
     # 2. Retrieve query & add the signature to it
     # 3. Make the request
     # 4. Deserialize the response
-
     uri = %{uri | host: endpoint.host, scheme: endpoint.scheme, port: 443}
+    uri = %{uri | query: calculate_content_signature(uri.query, body)}
     uri = %{uri | query: Auth.sign(config, {verb, uri})}
 
     req =
-      HTTPoison.request(verb, uri, [], default_headers())
+      HTTPoison.request(verb, uri, body, default_headers())
       |> Parser.handle_response(parser)
 
     {:reply, req, state}
@@ -36,7 +39,7 @@ defmodule Mws.Client do
   defp default_headers() do
     [
       {"User-Agent", user_agent_string()},
-      {"Content-Type", "x-www-form-urlencoded"}
+      {"Content-Type", "text/xml"}
     ]
   end
 
