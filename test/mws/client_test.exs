@@ -1,5 +1,5 @@
 defmodule Mws.ClientTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
   setup_all do
@@ -19,8 +19,6 @@ defmodule Mws.ClientTest do
 
   test "Can make a connection to MWS", ctx do
     use_cassette "get_matching_product" do
-
-
       query =
         %{
           "Action"   => "GetMatchingProduct",
