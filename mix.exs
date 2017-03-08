@@ -47,12 +47,13 @@ defmodule Mws.Mixfile do
       {:httpoison, "~> 0.11"},
       {:sweet_xml, "~> 0.6"},
       {:csv, "~> 1.4"},
-      {:exvcr, "~> 0.8", only: [:dev, :test]},
-      {:credo, "~> 0.3", only: [:dev, :test]},
+      {:timex, "~> 3.1"},
+      {:xslt, "~> 0.1"},
       {:dialyxir, "~> 0.4", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.14", only: :dev},
       {:eliver, "~> 1.3.0", only: :dev},
-      {:timex, "~> 3.1"},
+      {:exvcr, "~> 0.8", only: [:dev, :test]},
+      {:credo, "~> 0.3", only: [:dev, :test]},
       {:eye_drops, "~> 1.3", only: [:dev, :test]}
     ]
   end
