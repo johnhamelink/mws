@@ -32,7 +32,7 @@ defmodule Mws.ClientTest do
       }
 
     resp = Mws.Client.request(config, {:post, url}, Mws.Parsers.Product)
-    assert resp[:status] == "Success"
+    assert resp[:results] |> List.first |> Map.fetch!(:status) == "Success"
    end
   end
 end

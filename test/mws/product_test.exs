@@ -36,7 +36,7 @@ defmodule Mws.ProductTest do
       }
 
       resp = Mws.Client.request(ctx[:config], {:post, url}, Mws.Parsers.Product)
-      assert resp[:status] == "Success"
+      assert Enum.map(resp[:results], fn(r) -> r[:status] end) == ["Success"]
     end
   end
 
@@ -59,8 +59,9 @@ defmodule Mws.ProductTest do
 
     # TODO: modify the parser so that it handles multiple products correctly.
     resp = Mws.Client.request(ctx[:config], {:post, url}, Mws.Parsers.Product)
-    assert resp[:status] == "Success"
-    assert resp[:products] |> Enum.count == 2
+
+    assert Enum.map(resp[:results], fn(r) -> r[:status] end) == ["Success", "Success"]
+    assert Enum.map(resp[:results], fn(r) -> r[:products] end) |> Enum.count == 2
    end
   end
 
