@@ -1,9 +1,23 @@
 defmodule Mws.Client do
-  use HTTPoison.Base
+  use GenServer
   alias Mws.{Parser, Auth}
   require Logger
 
-  def request(config = %Mws.Config{endpoint: endpoint}, {verb, uri = %URI{}}, parser) do
+  @doc """
+  Start a client process which contains a config
+  """
+
+  def start_link(config = %Mws.Config{}) do
+    GenServer.start_link(__MODULE__, [config: config])
+  end
+
+  def request(pid, verb, uri = %URI{}, parser) do
+    GenServer.call(pid, {:request, verb, uri, parser})
+  end
+
+  def handle_call({:request, verb, uri, parser}, from, state) do
+    config = state[:config]
+    endpoint = config.endpoint
     # 1. Add endpoint info
     # 2. Retrieve query & add the signature to it
     # 3. Make the request
@@ -12,12 +26,11 @@ defmodule Mws.Client do
     uri = %{uri | host: endpoint.host, scheme: endpoint.scheme, port: 443}
     uri = %{uri | query: Auth.sign(config, {verb, uri})}
 
-    call_api(verb, uri, [], parser)
-  end
+    req =
+      HTTPoison.request(verb, uri, [], default_headers())
+      |> Parser.handle_response(parser)
 
-  defp call_api(verb, uri = %URI{}, body, parser) do
-    request(verb, uri, body, default_headers())
-    |> Parser.handle_response(parser)
+    {:reply, req, state}
   end
 
   defp default_headers() do
