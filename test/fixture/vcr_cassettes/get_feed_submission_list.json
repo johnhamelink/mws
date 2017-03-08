@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "User-Agent": "MWS/0.1.0 (Language=Elixir)",
+        "Content-Type": "text/xml"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://mws-eu.amazonservices.com/Feeds/2009-01-01"
+    },
+    "response": {
+      "body": "<?xml version=\"1.0\"?>\n<GetFeedSubmissionListResponse xmlns=\"http://mws.amazonaws.com/doc/2009-01-01/\">\n  <GetFeedSubmissionListResult>\n    <HasNext>false</HasNext>\n    <FeedSubmissionInfo>\n      <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>\n      <FeedType>_POST_PRODUCT_DATA_</FeedType>\n      <FeedSubmissionId>50004017233</FeedSubmissionId>\n      <StartedProcessingDate>2017-03-08T21:43:28+00:00</StartedProcessingDate>\n      <SubmittedDate>2017-03-08T21:42:53+00:00</SubmittedDate>\n    </FeedSubmissionInfo>\n  </GetFeedSubmissionListResult>\n  <ResponseMetadata>\n    <RequestId>f9f7e563-e5a8-41b3-a422-ad1f2fd015d4</RequestId>\n  </ResponseMetadata>\n</GetFeedSubmissionListResponse>\n",
+      "headers": {
+        "Server": "Server",
+        "Date": "Wed, 08 Mar 2017 21:43:45 GMT",
+        "Content-Type": "text/xml",
+        "Content-Length": "697",
+        "Connection": "keep-alive",
+        "x-mws-quota-max": "80.0",
+        "x-mws-quota-remaining": "79.0",
+        "x-mws-quota-resetsOn": "2017-03-08T21:47:00.000Z",
+        "X-Amz-Date": "Wed, 08 Mar 2017 21:43:45 GMT",
+        "x-amzn-Authorization": "AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1, Signed=true, Encrypted=false, Signature=4n32tecj4Bc0PLN3tuf/tb74H9wbC3NEzAoeyUKNMP4=, Algorithm=HmacSHA256",
+        "x-mws-request-id": "f9f7e563-e5a8-41b3-a422-ad1f2fd015d4",
+        "x-mws-timestamp": "2017-03-08T21:43:45.850Z",
+        "x-mws-response-context": "RosMB8Tnh/SfyqeTg0UJvfNOV1d0hSCR2gRFEPQ4IriYF0JjR+iwF5/R/CAwOW51PdgkSzEax/g=",
+        "Vary": "Accept-Encoding,User-Agent"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

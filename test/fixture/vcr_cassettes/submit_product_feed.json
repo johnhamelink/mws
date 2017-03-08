@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"amzn-envelope.xsd\">\n\t<Header>\n\t\t<DocumentVersion>1.01</DocumentVersion>\n\t\t<MerchantIdentifier>M_EXAMPLE_123456</MerchantIdentifier>\n\t</Header>\n\t<MessageType>Product</MessageType>\n\t<PurgeAndReplace>false</PurgeAndReplace>\n\t<Message>\n\t\t<MessageID>1</MessageID>\n\t\t<OperationType>Update</OperationType>\n\t\t<Product>\n\t\t\t<SKU>56789</SKU>\n\t\t\t<ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>\n\t\t\t<StandardProductID>\n\t\t\t\t<Type>ASIN</Type>\n\t\t\t\t<Value>B0EXAMPLEG</Value>\n\t\t\t</StandardProductID>\n\t\t\t<DescriptionData>\n\t\t\t\t<Title>Example Product Title</Title>\n\t\t\t\t<Brand>Example Product Brand</Brand>\n\t\t\t\t<Description>Example Product Description</Description>\n\t\t\t\t<MSRP currency=\"USD\">25.19</MSRP>\n\t\t\t\t<Manufacturer>Example Product Manufacturer</Manufacturer>\n\t\t\t\t<ItemType>example-item-type</ItemType>\n\t\t\t\t<BulletPoint>Bullet 1</BulletPoint>\n\t\t\t\t<BulletPoint>Bullet 2</BulletPoint>\n\t\t\t\t<BulletPoint>Bullet 3</BulletPoint>\n\t\t\t</DescriptionData>\n\t\t</Product>\n\t</Message>\n</AmazonEnvelope>",
+      "headers": {
+        "User-Agent": "MWS/0.1.0 (Language=Elixir)",
+        "Content-Type": "text/xml"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://mws-eu.amazonservices.com/Feeds/2009-01-01"
+    },
+    "response": {
+      "body": "<?xml version=\"1.0\"?>\n<SubmitFeedResponse xmlns=\"http://mws.amazonaws.com/doc/2009-01-01/\"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>50003017233</FeedSubmissionId><FeedType>_POST_PRODUCT_DATA_</FeedType><SubmittedDate>2017-03-08T21:17:12+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>5ca1ed05-2e2c-445f-b995-beed3b3fcbb2</RequestId></ResponseMetadata></SubmitFeedResponse>",
+      "headers": {
+        "Server": "Server",
+        "Date": "Wed, 08 Mar 2017 21:17:12 GMT",
+        "Content-Type": "text/xml",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "x-mws-quota-max": "30.0",
+        "x-mws-quota-remaining": "30.0",
+        "x-mws-quota-resetsOn": "2017-03-08T21:47:00.000Z",
+        "x-mws-response-context": "0My2KIKRhNish9/3Y2SZy1LWNC3HQehPwkMmRmUQevVPVf0UEPZa9nYnX5x7JwUMc/5vbatCsoU=",
+        "x-amz-request-id": "5ca1ed05-2e2c-445f-b995-beed3b3fcbb2",
+        "x-mws-request-id": "5ca1ed05-2e2c-445f-b995-beed3b3fcbb2",
+        "x-mws-timestamp": "2017-03-08T21:17:11.844Z",
+        "Vary": "Accept-Encoding,User-Agent"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
