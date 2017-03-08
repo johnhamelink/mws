@@ -19,5 +19,4 @@ defmodule Mws.Product do
 
     Mws.Client.request(conn, :post, url, Mws.Parsers.Product)
   end
-
 end
