@@ -45,4 +45,10 @@ defmodule Mws.Client do
     vsn = List.to_string(vsn)
     "MWS/#{vsn} (Language=Elixir)"
   end
+
+  defp calculate_content_signature(query, body) do
+    hash = Base.encode64(:crypto.hash(:md5, body), case: :lower)
+    Map.put(query, "ContentMD5Value", hash)
+  end
+
 end
