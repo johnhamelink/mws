@@ -5,4 +5,4 @@ config :exvcr, [
   filter_url_params: true
 ]
 
-import "test.secret.exs"
+import_config "test.secret.exs"
