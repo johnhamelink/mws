@@ -1,10 +1,11 @@
 defmodule Mws.Feed do
+  @version "2009-01-01"
 
   def submit(conn, {feed_type, feed_content}) when is_atom(feed_type) and is_bitstring(feed_content) do
     query =
       %{
         "Action"            => "SubmitFeed",
-        "Version"           => "2009-01-01",
+        "Version"           => @version,
         "FeedType"          => Mws.Parsers.FeedType.handle(feed_type),
         "PurgeAndReplace"   => false
       }
@@ -22,7 +23,7 @@ defmodule Mws.Feed do
     query =
       %{
         "Action"                   => "GetFeedSubmissionList",
-        "Version"                  => "2009-01-01",
+        "Version"                  => @version,
         "FeedTypeList"             => Enum.map(feed_types, &Mws.Parsers.FeedType.handle/1),
         "FeedSubmissionIdList"     => submission_ids,
         "FeedProcessingStatusList" => Enum.map(statuses, &Mws.Parsers.FeedStatus.handle/1)
@@ -37,6 +38,22 @@ defmodule Mws.Feed do
     }
 
     Mws.Client.request(conn, :post, url, "", Mws.Parsers.FeedSubmissionList)
+  end
+
+  def result(conn, %{submission_id: submission_id}) do
+    query =
+      %{
+        "Action"           => "GetFeedSubmissionResult",
+        "Version"          => @version,
+        "FeedSubmissionId" => submission_id
+      }
+
+    url = %URI{
+      path: "/Feeds/2009-01-01",
+      query: query
+    }
+
+    Mws.Client.request(conn, :post, url, "", Mws.Parsers.FeedSubmissionResult)
   end
 
 end

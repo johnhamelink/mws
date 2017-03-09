@@ -64,15 +64,11 @@ defmodule Mws.FeedTest do
   end
 
   test "GetFeedSubmissionResult", ctx do
-    use_cassette "get_feed_submission_list" do
+    use_cassette "get_feed_submission_result" do
 
-      list = Mws.Feed.list(
+      list = Mws.Feed.result(
         ctx[:conn],
-        %{
-          statuses: [:done],
-          submission_ids: ["50004017233"],
-          feed_types: [:products, :product_pricing]
-        }
+        %{submission_id: "50004017233"}
       )
 
       result = list[:results] |> List.first

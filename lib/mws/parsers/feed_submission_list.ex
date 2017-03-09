@@ -1,7 +1,6 @@
 defmodule Mws.Parsers.FeedSubmissionList do
   import SweetXml
 
-  # TODO: Handle HasNext somehow (I HATE XMLLLLLLLLL)
   def parse_xml(doc) do
       doc
       |> Mws.Parsers.TransformXml.transform_xml

@@ -5,8 +5,9 @@ defmodule Mws.Parser do
 
   def handle_response({:ok, %{body: body, headers: headers, status_code: _code}}, parser) do
     case get_content_type(headers) do
-      "text/xml" -> parser.parse_xml(body)
-      "text/plain;charset="<> _charset ->
+      "text/xml"                        -> parser.parse_xml(body)
+      "text/xml;charset=" <> _charset   -> parser.parse_xml(body)
+      "text/plain;charset=" <> _charset ->
         body
         |> String.split("\r\n")
         |> CSV.decode(seperator: ?\t, headers: true)

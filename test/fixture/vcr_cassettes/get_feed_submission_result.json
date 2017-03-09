@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "User-Agent": "MWS/0.1.0 (Language=Elixir)",
+        "Content-Type": "text/xml"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://mws-eu.amazonservices.com/Feeds/2009-01-01"
+    },
+    "response": {
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"amzn-envelope.xsd\">\n\t<Header>\n\t\t<DocumentVersion>1.02</DocumentVersion>\n\t\t<MerchantIdentifier>A1LR612KZV93RZ</MerchantIdentifier>\n\t</Header>\n\t<MessageType>ProcessingReport</MessageType>\n\t<Message>\n\t\t<MessageID>1</MessageID>\n\t\t<ProcessingReport>\n\t\t\t<DocumentTransactionID>50004017233</DocumentTransactionID>\n\t\t\t<StatusCode>Complete</StatusCode>\n\t\t\t<ProcessingSummary>\n\t\t\t\t<MessagesProcessed>1</MessagesProcessed>\n\t\t\t\t<MessagesSuccessful>0</MessagesSuccessful>\n\t\t\t\t<MessagesWithError>1</MessagesWithError>\n\t\t\t\t<MessagesWithWarning>0</MessagesWithWarning>\n\t\t\t</ProcessingSummary>\n\t\t\t<Result>\n\t\t\t\t<MessageID>1</MessageID>\n\t\t\t\t<ResultCode>Error</ResultCode>\n\t\t\t\t<ResultMessageCode>5000</ResultMessageCode>\n\t\t\t\t<ResultDescription>XML Parsing Error at Line 15, Column 23: cvc-complex-type.2.4.a: Invalid content was found starting with element &apos;StandardProductID&apos;. One of &apos;{LaunchDate, DiscontinueDate, ReleaseDate, ExternalProductUrl, OffAmazonChannel, OnAmazonChannel, Condition, Rebate, ItemPackageQuantity, NumberOfItems, LiquidVolume, DescriptionData, PromoTag, DiscoveryData, ProductData, ShippedByFreight, EnhancedImageURL, Amazon-Vendor-Only, Amazon-Only, RegisteredParameter}&apos; is expected.</ResultDescription>\n\t\t\t\t<AdditionalInfo>\n\t\t\t\t\t<SKU>56789</SKU>\n\t\t\t\t</AdditionalInfo>\n\t\t\t</Result>\n\t\t\t<Result>\n\t\t\t\t<MessageID>1</MessageID>\n\t\t\t\t<ResultCode>Error</ResultCode>\n\t\t\t\t<ResultMessageCode>5000</ResultMessageCode>\n\t\t\t\t<ResultDescription>XML Parsing Error at Line 26, Column 18: cvc-complex-type.2.4.a: Invalid content was found starting with element &apos;BulletPoint&apos;. One of &apos;{OtherItemAttributes, TargetAudience, SubjectContent, IsGiftWrapAvailable, IsGiftMessageAvailable, PromotionKeywords, IsDiscontinuedByManufacturer, DeliveryScheduleGroupID, DeliveryChannel, PurchasingChannel, ExternalProductInformation, MaxAggregateShipQuantity, IsCustomizable, CustomizableTemplateName, RecommendedBrowseNode, MerchantShippingGroupName, FEDAS_ID, TSDAgeWarning, TSDWarning, TSDLanguage, OptionalPaymentTypeExclusion, DistributionDesignation}&apos; is expected.</ResultDescription>\n\t\t\t\t<AdditionalInfo>\n\t\t\t\t\t<SKU>56789</SKU>\n\t\t\t\t</AdditionalInfo>\n\t\t\t</Result>\n\t\t</ProcessingReport>\n\t</Message>\n</AmazonEnvelope>",
+      "headers": {
+        "Server": "Server",
+        "Date": "Wed, 08 Mar 2017 22:30:17 GMT",
+        "Content-Type": "text/xml;charset=UTF-8",
+        "Content-Length": "2376",
+        "Connection": "keep-alive",
+        "x-mws-quota-max": "60.0",
+        "x-mws-quota-remaining": "60.0",
+        "x-mws-quota-resetsOn": "2017-03-08T22:47:00.000Z",
+        "Content-MD5": "mKKA+f1j4fr1hsDlLkNB8A==",
+        "x-mws-response-context": "cwCuAwSJVJW8AfmP/qQY+/DkTVKS21RN2tiVBaUOKJV58pegMV4pBThJQAnz4UkMFu4BJisRZFw=",
+        "x-amz-request-id": "d9069894-da43-466f-99a4-029c75d29803",
+        "x-mws-request-id": "d9069894-da43-466f-99a4-029c75d29803",
+        "x-mws-timestamp": "2017-03-08T22:30:16.995Z",
+        "Vary": "Accept-Encoding,User-Agent"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
