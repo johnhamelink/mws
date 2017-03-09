@@ -1,15 +1,16 @@
-defmodule Mws.Parsers.TransformXml do
+defmodule Mws.XsltTransformer do
 
   @template Path.expand("./resources/strip_namespaces.xslt.xml")
-  def transform_xml(doc) do
+
+  def strip_namespaces(doc) do
     filename =
       "./" <> produce_unique_filename()
       |> Path.expand
 
     with :ok        <- File.write(filename, doc),
          {:ok, xml} <- Xslt.transform(@template, filename),
-         :ok        <- File.rm(filename),
-         do: xml
+           :ok        <- File.rm(filename),
+      do: xml
   end
 
   defp produce_unique_filename() do
@@ -18,5 +19,4 @@ defmodule Mws.Parsers.TransformXml do
       ".xml"
     ] |> Enum.join("")
   end
-
 end

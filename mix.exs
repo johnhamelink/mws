@@ -45,8 +45,8 @@ defmodule Mws.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.11"},
-      {:sweet_xml, "~> 0.6"},
       {:xml_builder, "~> 0.0.9"},
+      {:elixir_xml_to_map, "~> 0.1"},
       {:csv, "~> 1.4"},
       {:timex, "~> 3.1"},
       {:xslt, "~> 0.1"},

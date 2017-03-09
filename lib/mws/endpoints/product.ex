@@ -17,6 +17,6 @@ defmodule Mws.Product do
       query: query
     }
 
-    Mws.Client.request(conn, :post, url, Mws.Parsers.Product)
+    Mws.Client.request(conn, :post, url)
   end
 end

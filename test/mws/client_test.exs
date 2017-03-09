@@ -32,8 +32,9 @@ defmodule Mws.ClientTest do
         query: query
       }
 
-    resp = Mws.Client.request(ctx[:conn], :post, url, Mws.Parsers.Product)
-    assert resp[:results] |> List.first |> Map.fetch!(:status) == "Success"
+    resp = Mws.Client.request(ctx[:conn], :post, url)
+
+    assert get_in(resp, ["GetMatchingProductResponse", "GetMatchingProductResult", "status"]) == "Success"
    end
   end
 end

@@ -11,13 +11,13 @@ defmodule Mws.Client do
     GenServer.start_link(__MODULE__, [config: config])
   end
 
-  def request(pid, verb, uri = %URI{}, parser),
-  do: request(pid, verb, uri, "", parser)
+  def request(pid, verb, uri = %URI{}),
+  do: request(pid, verb, uri, "")
 
-  def request(pid, verb, uri = %URI{}, body, parser),
-  do: GenServer.call(pid, {:request, verb, uri, body, parser})
+  def request(pid, verb, uri = %URI{}, body),
+  do: GenServer.call(pid, {:request, verb, uri, body})
 
-  def handle_call({:request, verb, uri, body, parser}, _from, state) do
+  def handle_call({:request, verb, uri, body}, _from, state) do
     config = state[:config]
     endpoint = config.endpoint
 
@@ -31,7 +31,7 @@ defmodule Mws.Client do
 
     req =
       HTTPoison.request(verb, uri, body, default_headers())
-      |> Parser.handle_response(parser)
+      |> Parser.handle_response
 
     {:reply, req, state}
   end
