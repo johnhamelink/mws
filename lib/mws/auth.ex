@@ -13,6 +13,7 @@ defmodule Mws.Auth do
       |> Map.put("SignatureMethod", "HmacSHA256")
       |> Map.put("SignatureVersion", "2")
       |> Enum.sort
+      |> Enum.filter(fn ({_k, v}) -> !is_nil(v) end)
 
     query ++ [
         Signature: build_signature(config, verb, uri, query)
