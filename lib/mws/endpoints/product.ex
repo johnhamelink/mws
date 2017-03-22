@@ -19,4 +19,26 @@ defmodule Mws.Product do
 
     Mws.Client.request(conn, :post, url)
   end
+
+  def get_matching_product_for_id(conn, id, id_type \\ "ASIN")
+  def get_matching_product_for_id(conn, id, id_type) when is_bitstring(id) do
+    get_matching_product_for_id(conn, [id], id_type)
+  end
+  def get_matching_product_for_id(conn, ids, id_type) when is_list(ids) do
+    query =
+      %{
+        "Action"   => "GetMatchingProductForId",
+        "Version"  => "2011-10-01",
+        "IdList" => ids,
+        "IdType" => id_type
+      }
+      |> Mws.Utils.restructure("IdList", "Id")
+
+    url = %URI{
+      path: "/Products/2011-10-01",
+      query: query
+    }
+
+    Mws.Client.request(conn, :post, url)
+  end
 end
