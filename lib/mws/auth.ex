@@ -9,10 +9,11 @@ defmodule Mws.Auth do
       |> Map.put("AWSAccessKeyId", config.access_key_id)
       |> Map.put("SellerId", config.seller_id)
       |> Map.put("MarketplaceId", config.marketplace_id)
-      |> Map.put("MSWAuthToken", config.mws_auth_token)
+      |> Map.put("MWSAuthToken", config.mws_auth_token)
       |> Map.put("SignatureMethod", "HmacSHA256")
       |> Map.put("SignatureVersion", "2")
       |> Enum.sort
+      |> Enum.filter(fn ({_k, v}) -> !is_nil(v) end)
 
     query ++ [
         Signature: build_signature(config, verb, uri, query)
