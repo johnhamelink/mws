@@ -45,7 +45,7 @@ defmodule Mws.Product do
   def get_product_categories_for_asin(conn, asin) when is_bitstring(asin) do
     query =
       %{
-        "Action"   => "GetCompetitivePricingForASIN",
+        "Action"   => "GetProductCategoriesForASIN",
         "Version"  => "2011-10-01",
         "ASIN" => asin
       }
