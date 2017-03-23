@@ -61,7 +61,7 @@ defmodule Mws.Product do
   def get_competitive_pricing_for_asin(conn, asin) when is_bitstring(asin) do
     get_competitive_pricing_for_asin(conn, [asin])
   end
-  def get_competitive_pricing_for_asin(conn, asin) when is_list(asin) do
+  def get_competitive_pricing_for_asin(conn, asins) when is_list(asins) do
     query =
       %{
         "Action"   => "GetCompetitivePricingForASIN",
