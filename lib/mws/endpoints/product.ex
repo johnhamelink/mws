@@ -42,6 +42,22 @@ defmodule Mws.Product do
     Mws.Client.request(conn, :post, url)
   end
 
+  def get_product_categories_for_asin(conn, asin) when is_bitstring(asin) do
+    query =
+      %{
+        "Action"   => "GetCompetitivePricingForASIN",
+        "Version"  => "2011-10-01",
+        "ASIN" => asin
+      }
+
+    url = %URI{
+      path: "/Products/2011-10-01",
+      query: query
+    }
+
+    Mws.Client.request(conn, :post, url)
+  end
+
   def get_competitive_pricing_for_asin(conn, asin) when is_bitstring(asin) do
     get_competitive_pricing_for_asin(conn, [asin])
   end
