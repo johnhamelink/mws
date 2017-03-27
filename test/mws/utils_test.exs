@@ -6,6 +6,24 @@ defmodule Mws.UtilsTest do
     assert Utils.amz_encode_query(%{"term" => "foo bar"}) == "term=foo%20bar"
   end
 
+  test "encodes nested queries" do
+    query = %{
+      "a" => "b",
+      "c" => %{
+        "d" => "e"
+      },
+      "f" => %{
+        "g" => "h",
+        "i" => "j",
+        "k" => %{
+          "l" => "m"
+        }
+      }
+    }
+    expected = "a=b&c.d=e&f.g=h&f.i=j&f.k.l=m"
+    assert Utils.amz_encode_query(query) == expected
+  end
+
   test "structure replaces params with numbered params" do
     result =
       %{"List" => ["term1", "term2"]}
