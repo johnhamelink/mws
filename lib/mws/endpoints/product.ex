@@ -77,4 +77,24 @@ defmodule Mws.Product do
 
     Mws.Client.request(conn, :post, url)
   end
+
+  def get_my_fees_estimate(conn, request) when is_bitstring(request) do
+    get_my_fees_estimate(conn, [request])
+  end
+  def get_my_fees_estimate(conn, request_list) when is_list(request_list) do
+    query =
+      %{
+        "Action"   => "GetMyFeesEstimate",
+        "Version"  => "2011-10-01",
+        "FeesEstimateRequestList" => request_list
+      }
+      |> Mws.Utils.restructure("FeesEstimateRequestList", "FeesEstimateRequest")
+
+    url = %URI{
+      path: "/Products/2011-10-01",
+      query: query
+    }
+
+    Mws.Client.request(conn, :post, url)
+  end
 end
