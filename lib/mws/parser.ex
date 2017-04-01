@@ -1,6 +1,9 @@
 defmodule Mws.Parser do
+  require Logger
 
   @moduledoc """
+  This module handles response data from the API, parses it where possible and
+  returns a formatted result.
   """
 
   def handle_response({:ok, %{body: body, headers: headers, status_code: _code}}) do
@@ -24,10 +27,15 @@ defmodule Mws.Parser do
     %{headers: headers, body: body}
   end
 
+  def handle_response({:error, err}) do
+    Logger.error "HTTP Request resulted in an error"
+    {:error, err}
+  end
+
   defp parse_xml(xml) do
-    xml
-    |> Mws.XsltTransformer.strip_namespaces
-    |> XmlToMap.naive_map
+    with {:ok, xml} <- Mws.XsltTransformer.strip_namespaces(xml) do
+      XmlToMap.naive_map(xml)
+    end
   end
 
   def get_content_type(headers) do

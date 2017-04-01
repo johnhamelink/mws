@@ -9,8 +9,9 @@ defmodule Mws.XsltTransformer do
 
     with :ok        <- File.write(filename, doc),
          {:ok, xml} <- Xslt.transform(@template, filename),
-           :ok        <- File.rm(filename),
-      do: xml
+         :ok        <- File.rm(filename) do
+      {:ok, xml}
+    end
   end
 
   defp produce_unique_filename() do
