@@ -8,6 +8,11 @@ defmodule Mws.Utils do
     Enum.map_join(query_map, "&", &pair/1)
   end
 
+  def pair({outer_key, list}) when is_list(list) do
+    Enum.map_join(list, "&", fn ({inner_key, value}) ->
+      pair({"#{outer_key}.#{inner_key}", value})
+    end)
+  end
   def pair({k, v}) do
     URI.encode(to_string(k), &URI.char_unreserved?/1) <>
     "=" <>

@@ -15,6 +15,7 @@ defmodule Mws.Parser do
           body
           |> String.split("\r\n")
           |> CSV.decode(seperator: ?\t, headers: true)
+        _ -> body
       end
 
     # Turn the headers into a map

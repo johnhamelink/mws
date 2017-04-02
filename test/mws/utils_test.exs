@@ -6,6 +6,24 @@ defmodule Mws.UtilsTest do
     assert Utils.amz_encode_query(%{"term" => "foo bar"}) == "term=foo%20bar"
   end
 
+  test "encodes nested queries and preserves order" do
+    query = [
+      MarketplaceId: "123",
+      IdType: "ASIN",
+      IdValue: "ABC",
+      Identifier: "ABC",
+      IsAmazonFulfilled: true,
+      PriceToEstimateFees: [
+        ListingPrice: [
+          CurrencyCode: "GBP",
+          Amount: 0
+        ]
+      ]
+    ]
+    expected = "MarketplaceId=123&IdType=ASIN&IdValue=ABC&Identifier=ABC&IsAmazonFulfilled=true&PriceToEstimateFees.ListingPrice.CurrencyCode=GBP&PriceToEstimateFees.ListingPrice.Amount=0"
+    assert Utils.amz_encode_query(query) == expected
+  end
+
   test "structure replaces params with numbered params" do
     result =
       %{"List" => ["term1", "term2"]}
