@@ -1,6 +1,6 @@
 defmodule Mws.Client do
   use GenServer
-  alias Mws.{Parser, Auth}
+  alias Mws.{Parser, Auth, Utils}
   require Logger
 
   @doc """
@@ -21,13 +21,18 @@ defmodule Mws.Client do
     config = state[:config]
     endpoint = config.endpoint
 
-    # 1. Add endpoint info
-    # 2. Retrieve query & add the signature to it
-    # 3. Make the request
-    # 4. Deserialize the response
-    uri = %{uri | host: endpoint.host, scheme: endpoint.scheme, port: 443}
+    # 1. Add any endpoint-specific modifications
+    # 2. Add endpoint info
+    # 3. Retrieve query & add the signature to it
+    # 4. Make the request
+    # 5. Deserialize the response
+    uri = %{uri | query: Auth.prepare_for_signature(config, uri.query)}
+    uri = %{uri | query: Utils.prepare_query(uri.query, uri.path)}
+    uri = %{uri | host:  endpoint.host, scheme: endpoint.scheme, port: 443}
     uri = %{uri | query: calculate_content_signature(uri.query, body)}
     uri = %{uri | query: Auth.sign(config, {verb, uri})}
+
+    Logger.debug "Calling URL: #{URI.to_string uri}"
 
     req =
       HTTPoison.request(verb, uri, body, default_headers())

@@ -1,15 +1,19 @@
 defmodule Mws.Auth do
   alias Mws.Utils
 
+  def prepare_for_signature(config, query) do
+    query
+    |> Map.put("AWSAccessKeyId", config.access_key_id)
+    |> Map.put("SellerId", config.seller_id)
+    |> Map.put("MarketplaceId", config.marketplace_id)
+    |> Map.put("MWSAuthToken", config.mws_auth_token)
+  end
+
   def sign(config, {verb, uri}) do
     query =
       uri.query
       |> Enum.into(%{})
       |> Map.put("Timestamp", DateTime.to_iso8601(DateTime.utc_now))
-      |> Map.put("AWSAccessKeyId", config.access_key_id)
-      |> Map.put("SellerId", config.seller_id)
-      |> Map.put("MarketplaceId", config.marketplace_id)
-      |> Map.put("MWSAuthToken", config.mws_auth_token)
       |> Map.put("SignatureMethod", "HmacSHA256")
       |> Map.put("SignatureVersion", "2")
       |> Enum.sort
