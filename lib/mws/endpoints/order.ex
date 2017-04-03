@@ -13,6 +13,9 @@ defmodule Mws.Order do
             "MaxResultsPerPage":   100
 
 
+  @doc """
+  Use this to retrieve a list of orders
+  """
   def list(conn, params = %Mws.Order{}) do
     query =
       params
@@ -20,6 +23,24 @@ defmodule Mws.Order do
       |> Map.new(fn {k, v} -> {Atom.to_string(k), v} end)
       |> Mws.Utils.restructure("OrderStatus", "Status")
       |> Mws.Utils.restructure("FulfillmentChannel", "Channel")
+
+    url = %URI{
+      path: "/Orders/2013-09-01",
+      query: query
+    }
+
+    Mws.Client.request(conn, :post, url)
+  end
+
+  @doc """
+  Use this to get the items an order contains
+  """
+  def list_items(conn, order_id) when is_bitstring(order_id) do
+    query = %{
+        "Action"        => "ListOrderItems",
+        "Version"       => "2013-09-01",
+        "AmazonOrderId" => order_id
+    }
 
     url = %URI{
       path: "/Orders/2013-09-01",
