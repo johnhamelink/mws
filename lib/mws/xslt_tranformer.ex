@@ -1,4 +1,5 @@
 defmodule Mws.XsltTransformer do
+  require Logger
 
   @template Path.expand("./resources/strip_namespaces.xslt.xml")
 
@@ -11,6 +12,9 @@ defmodule Mws.XsltTransformer do
          {:ok, xml} <- Xslt.transform(@template, filename),
          :ok        <- File.rm(filename) do
       {:ok, xml}
+    else
+      Logger.warn "XSLT Transformer could not parse XML. Returning it un-transformed."
+      {:ok, doc}
     end
   end
 
