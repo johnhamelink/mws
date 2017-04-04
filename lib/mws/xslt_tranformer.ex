@@ -13,8 +13,9 @@ defmodule Mws.XsltTransformer do
          :ok        <- File.rm(filename) do
       {:ok, xml}
     else
-      Logger.warn "XSLT Transformer could not parse XML. Returning it un-transformed."
-      {:ok, doc}
+      {:error, err} ->
+        Logger.warn "XSLT Transformer could not parse XML. Returning it un-transformed (Error: #{err})"
+        {:ok, doc}
     end
   end
 
