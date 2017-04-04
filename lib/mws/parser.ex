@@ -36,6 +36,9 @@ defmodule Mws.Parser do
   defp parse_xml(xml) do
     with {:ok, xml} <- Mws.XsltTransformer.strip_namespaces(xml) do
       XmlToMap.naive_map(xml)
+    else
+      {:error, err} ->
+        {:error, err, xml}
     end
   end
 
