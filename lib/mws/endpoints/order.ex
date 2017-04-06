@@ -20,7 +20,9 @@ defmodule Mws.Order do
     query =
       params
       |> Map.from_struct
-      |> Map.new(fn {k, v} -> {Atom.to_string(k), v} end)
+      |> Map.new(fn {k, v} -> {Atom.to_string(k), v} end) # Convert keys to string
+      |> Enum.reject(fn ({k, v}) -> is_nil(v) end)        # Reject Nil values
+      |> Enum.into(%{})
       |> Mws.Utils.restructure("OrderStatus", "Status")
       |> Mws.Utils.restructure("FulfillmentChannel", "Channel")
 

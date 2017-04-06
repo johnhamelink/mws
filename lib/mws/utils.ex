@@ -25,7 +25,7 @@ defmodule Mws.Utils do
     URI.encode(to_string(v), &URI.char_unreserved?/1)
   end
 
-  def restructure(params, prefix, appendage) do
+  def restructure(params, prefix, appendage) when is_map(params) do
     {list, params} = Map.pop(params, prefix)
     Map.merge(params, numbered_params("#{prefix}.#{appendage}", list))
   end
